@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Tender Trio Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fef9f5;
+      color: #333;
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #444;
+    }
+    .question {
+      margin-bottom: 2rem;
+    }
+    button {
+      background-color: #222;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .result {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Which Tender Trio House Are You In?</h1>
+  <p>Are you the nurturing Caregho, the dreamy Ulalan, or the quirky Ahjushi Yolkim? Take this quiz to find out where your soul belongs.</p>
+
+  <form id="quiz">
+    <div class="question">
+      <p>1. Choose a Taylor Swift song:</p>
+      <label><input type="radio" name="q1" value="caregho"> You Belong With Me</label><br>
+      <label><input type="radio" name="q1" value="ulalan"> All Too Well</label><br>
+      <label><input type="radio" name="q1" value="yolkim"> Shake It Off</label>
+    </div>
+
+    <div class="question">
+      <p>2. Your go-to comfort activity?</p>
+      <label><input type="radio" name="q2" value="caregho"> Making food for others</label><br>
+      <label><input type="radio" name="q2" value="ulalan"> Writing in your diary</label><br>
+      <label><input type="radio" name="q2" value="yolkim"> Dancing in the kitchen</label>
+    </div>
+
+    <div class="question">
+      <p>3. Your favorite rainy day activity?</p>
+      <label><input type="radio" name="q3" value="caregho"> Journaling while sipping tea</label><br>
+      <label><input type="radio" name="q3" value="ulalan"> Staring at the window and crying to music</label><br>
+      <label><input type="radio" name="q3" value="yolkim"> Dancing in your pajamas and cleaning the house</label>
+    </div>
+
+    <div class="question">
+      <p>4. How do you comfort a friend?</p>
+      <label><input type="radio" name="q4" value="caregho"> Give them a big warm hug and snacks</label><br>
+      <label><input type="radio" name="q4" value="ulalan"> Sit in silence and let them talk</label><br>
+      <label><input type="radio" name="q4" value="yolkim"> Crack a weird joke and distract them</label>
+    </div>
+
+    <div class="question">
+      <p>5. What do people usually say about you?</p>
+      <label><input type="radio" name="q5" value="caregho"> “You're such a mom!”</label><br>
+      <label><input type="radio" name="q5" value="ulalan"> “You feel so deeply.”</label><br>
+      <label><input type="radio" name="q5" value="yolkim"> “You're... unique.”</label>
+    </div>
+
+    <div class="question">
+      <p>6. What makes you cry the most?</p>
+      <label><input type="radio" name="q6" value="caregho"> Seeing someone hurt and not being able to help</label><br>
+      <label><input type="radio" name="q6" value="ulalan"> A song that reminds you of someone</label><br>
+      <label><input type="radio" name="q6" value="yolkim"> Accidentally stepping on your pet's paw</label>
+    </div>
+
+    <div class="question">
+      <p>7. Favorite aesthetic?</p>
+      <label><input type="radio" name="q7" value="caregho"> Warm cottagecore</label><br>
+      <label><input type="radio" name="q7" value="ulalan"> Soft grunge / melancholy</label><br>
+      <label><input type="radio" name="q7" value="yolkim"> Goblincore chaos but wholesome</label>
+    </div>
+
+    <div class="question">
+      <p>8. You’re left alone at home. What do you do?</p>
+      <label><input type="radio" name="q8" value="caregho"> Cook for no one. Feed imaginary guests.</label><br>
+      <label><input type="radio" name="q8" value="ulalan"> Cry, sleep, read sad poems</label><br>
+      <label><input type="radio" name="q8" value="yolkim"> Wear a robe, sing karaoke, pretend you're in a sitcom</label>
+    </div>
+
+    <button type="button" onclick="getResult()">See My House</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function getResult() {
+      const answers = document.querySelectorAll('input[type="radio"]:checked');
+      let scores = { caregho: 0, ulalan: 0, yolkim: 0 };
+
+      answers.forEach(answer => {
+        scores[answer.value]++;
+      });
+
+      const highest = Object.keys(scores).reduce((a, b) =>
+        scores[a] > scores[b] ? a : b
+      );
+
+      const descriptions = {
+        caregho: "🏡 You belong in House Caregho — the gentle givers, the emotional caregivers, the ones who always have snacks in their bag and open arms for anyone hurting. You radiate warmth and steady strength. You’re the emotional backbone of your friend group.",
+        ulalan: "🌙 You’re in House Ulalan — the dreamers, the romantics, the ones who carry soft sadness and deep beauty in everything they do. You feel everything at 110%. You see art in heartbreak, and you heal through expression and empathy.",
+        yolkim: "🌀 You belong to House Ahjushi Yolkim — the oddball heart, the one who finds joy in the mess, who laughs through the pain, who lives like they’re in a parody of a drama. You’re a one-person variety show — chaotic, but full of unexpected love."
+      };
+
+      document.getElementById('result').innerText = descriptions[highest];
+    }
+  </script>
+</body>
+</html>
